@@ -1,11 +1,11 @@
 import MySQLdb as mysql
 
 class DatabaseConnector:
-    def __init__(self, host, username='', password='', port='', database=''):
+    def __init__(self, host='', username='', password='', port=0, database=''):
         """
         Initializes a MySQL connection with the provided credentials.
 
-        @param host -- the host to connect to
+        @param host -- the host to connect to (default localhost)
         @param username -- the username to login as (optional)
         @param password -- the password to login with (optional)
         @param port -- the port to connect to (optional)
@@ -33,7 +33,7 @@ class DatabaseConnector:
         """
         return self
 
-    def __exit__(self):
+    def __exit__(self, type, value, traceback):
         """
         On exit as a context manager, close the connection
         """

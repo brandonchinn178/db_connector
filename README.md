@@ -19,7 +19,7 @@ with DatabaseConnector(host) as db:
 ```
 
 ### Class Methods
-- `DatabaseConnector.__init__(host, [username, password, port, database])`: creates a new DatabaseConnector object, connected to the MySQL server given in the host, optionally with the given username, password, port, and database.
+- `DatabaseConnector.__init__([host, username, password, port, database])`: creates a new DatabaseConnector object. Connects to localhost by default, optionally with the given username, password, port, and database.
 - `DatabaseConnector.__del__()`: closes the connection before this object is deleted.
 - `DatabaseConnector.__enter__()`: allows a DatabaseConnector to be used as a context manager
 - `DatabaseConnector.__exit__()`: closes the connection on exit as a context manager
