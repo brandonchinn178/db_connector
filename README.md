@@ -11,6 +11,8 @@ Database Connector Object
 The DatabaseConnector can be used as a regular object or as a context manager. These are two valid ways to use a DatabaseConnector:
 
 ```
+from db_connector import DatabaseConnector
+
 db = DatabaseConnector(host, username='test')
 db.execute('INSERT INTO table VALUES (1,2)')
 
