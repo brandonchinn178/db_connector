@@ -1,17 +1,35 @@
-Database Connector
-==================
+ServConn
+========
 
-This repository defines a class that allows the wrapping of a MySQL connection. This class lets you query a connection without dealing with connection or cursor objects. Other database connections may be supported in later versions (PostgreSQL, SQLite, etc)
+This repository defines classes that wrap connections to certain servers. The current classes defined are:
+- DatabaseConnector: a class that wraps a MySQL connection
+- SocketConnector: a class that wraps a socket connection
 
-Database Connector Object
--------------------------
+Development
+-----------
+
+To develop, use the following to setup your environment
+
+1. (optional) Setup a virtual environment with virtualenv
+2. Install pip
+3. `pip install -r requirements.txt`
+
+Installing
+----------
+
+To install this package, either run `python setup.py install` from this project or call `pip install servconn`.
+
+DatabaseConnector
+-----------------
+
+This class lets you query a connection without dealing with connection or cursor objects. Other database connections may be supported in later versions (PostgreSQL, SQLite, etc)
 
 ### Usage
 
-The DatabaseConnector can be used as a regular object or as a context manager. These are two valid ways to use a DatabaseConnector:
+The DatabaseConnector can be used as a regular object or as a context manager.
 
 ```
-from db_connector import DatabaseConnector
+from servconn import DatabaseConnector
 
 db = DatabaseConnector(host, username='test')
 db.execute('INSERT INTO table VALUES (1,2)')
@@ -35,3 +53,25 @@ with DatabaseConnector(host) as db:
 - `execute(query)`: Executes the query but doesn't return anything. Useful for INSERT or DROP operations
 - `compute(query)`: Returns the first row of the result of the running the query. Useful for SQL aggregate functions
 - `close()`: Closes the connection from any further queries
+
+SocketConnector
+---------------
+
+This class lets you send and receive JSON packets to the provided server.
+
+### Usage
+
+The SocketConnector can be used as a regular object or as a context manager.
+
+```
+from servconn import SocketConnector
+
+socket = SocketConnector(host, port)
+data = {
+    'hello': 'world'
+}
+response = socket.send(data)
+
+with SocketConnector(host, port) as socket:
+    socket.send(data)
+```
