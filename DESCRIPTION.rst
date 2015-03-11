@@ -25,4 +25,4 @@ To install this package, either download the project from Pypi or simply run ``p
 Documentation
 =============
 
-View the README file for documentation, or view the online documentation `here <#>`_.
+View the README file for documentation, or view the online documentation `here <http://brandonchinn178.github.io/servconn>`_.
