@@ -6,7 +6,7 @@ title: DatabaseConnector
 DatabaseConnector
 =================
 
-This class lets you query a connection without dealing with connection or cursor objects. Other database connections may be supported in later versions (PostgreSQL, SQLite, etc)
+This class lets you query a SQL database without dealing with connection or cursor objects. You must install the relevant Python packages in order to use the related DatabaseConnector: `mysql-python` for MySQL and `psycopg2` for PostgreSQL.
 
 Usage
 -----
@@ -31,6 +31,14 @@ Class Methods
 `DatabaseConnector.connect_mysql([host, username, password, port, database])`
 
 - Connects to a MySQL server, connecting to the given host (localhost by default), optionally with the given username, password, port, or database.
+
+`DatabaseConnector.connect_sqlite([database])`
+
+- Connects to the SQLite database file provided. Defaults to the database in RAM.
+
+`DatabaseConnector.connect_postgres([host, username, password, port, database])`
+
+- Connects to a PostgreSQL server. Connects to the Unix socket by default on port 5432, optionally with the given username, password, and database.
 
 Instance Variables
 ------------------
