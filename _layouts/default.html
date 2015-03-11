@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if page.title %}{{ page.title }} &ndash; {% endif %}ServConn Documentation</title>
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="static/default.css">
+</head>
+<body>
+    <header>
+        <h1>ServConn Documentation</h1>
+    </header>
+    <nav>
+        {% include nav.html %}
+    </nav>
+    <div class="content">
+        {{ content }}
+    </div>
+</body>
+</html>
