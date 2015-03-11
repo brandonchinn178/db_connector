@@ -79,7 +79,7 @@ response = socket.send(data)
 ### Instance Variables
 - `SocketConnector.host`: The host to connect to
 - `SocketConnector.port`: The port to connect to
-- `SocketConnector.bufsize`: The size of data allowed to be received through this socket
+- `SocketConnector.bufsize`: The maximum amount of data allowed to be received at once through this socket (by default 4096)
 
 ### Instance Methods
 - `send(data)`: Sends the provided data over the socket as a JSON-formatted string
