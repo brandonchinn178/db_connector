@@ -25,7 +25,7 @@ The SocketConnector is used as a regular Python object.
 Class Methods
 -------------
 
-`SocketConnector.__init__(host, port[, bufsize=4096])`
+`SocketConnector(host, port[, bufsize=4096])`
 
 - Creates a SocketConnector object that will send packets to the given host and port. The bufsize may also be specified (default 4096).
 
