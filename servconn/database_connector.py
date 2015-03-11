@@ -30,7 +30,7 @@ class DatabaseConnector:
         @param host -- the host to connect to (default localhost)
         @param username -- the username to login as (optional)
         @param password -- the password to login with (optional)
-        @param port -- the port to connect to (optional)
+        @param port -- the port to connect to (default 3306)
         @param database -- the name of the database to connect to (optional)
         """
         try:
@@ -44,6 +44,45 @@ class DatabaseConnector:
             passwd=password,
             port=port,
             db=database
+        )
+        c = connection.cursor()
+        return cls(connection, c)
+
+    @classmethod
+    def connect_sqlite(cls, database=':memory:'):
+        """
+        Initializes a SQLite connection to the given database.
+
+        @param database -- the name of the database file to connect to (default database in RAM)
+        """
+        import sqlite3
+
+        connection = sqlite3.connect(database=database)
+        c = connection.cursor()
+        return cls(connection, c)
+
+    @classmethod
+    def connect_postgres(cls, host='', username='', password='', port=5432, database=''):
+        """
+        Initializes a PostGres connection with the provided credentials.
+
+        @param host -- the host to connect to (default Unix Socket)
+        @param username -- the username to login as (optional)
+        @param password -- the password to login with (optional)
+        @param port -- the port to connect to (default 5432)
+        @param database -- the name of the database to connect to (optional)
+        """
+        try:
+            import psycopg2
+        except ImportError:
+            raise ImportError("Please install the mysql-python package")
+
+        connection = psycopg2.connect(
+            host=host,
+            user=username,
+            password=password,
+            port=port,
+            database=database
         )
         c = connection.cursor()
         return cls(connection, c)

@@ -43,7 +43,9 @@ with DatabaseConnector.connect_mysql(host) as db:
 - `DatabaseConnector.__del__()`: Closes the connection before this object is deleted.
 - `DatabaseConnector.__enter__()`: Allows a DatabaseConnector to be used as a context manager
 - `DatabaseConnector.__exit__()`: Closes the connection on exit as a context manager
-- `DatabaseConnector.connect_mysql([host, username, password, port, database])`: Connects to a MySQL server. Connects to localhost by default, optionally with the given username, password, port, and database.
+- `DatabaseConnector.connect_mysql([host, username, password, port, database])`: Connects to a MySQL server. Connects to localhost by default on port 3306, optionally with the given username, password, and database.
+- `DatabaseConnector.connect_sqlite([database])`: Connects to the SQLite database file provided. Defaults to the database in RAM.
+- `DatabaseConnector.connect_postgres([host, username, password, port, database])`: Connects to a PostGres server. Connects to the Unix socket by default on port 5432, optionally with the given username, password, and database.
 
 ### Instance Variables
 - `DatabaseConnector.connection`: The MySQL Connection object
