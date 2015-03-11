@@ -1,24 +1,7 @@
-import MySQLdb as mysql
-
 class DatabaseConnector:
-    def __init__(self, host='', username='', password='', port=0, database=''):
-        """
-        Initializes a MySQL connection with the provided credentials.
-
-        @param host -- the host to connect to (default localhost)
-        @param username -- the username to login as (optional)
-        @param password -- the password to login with (optional)
-        @param port -- the port to connect to (optional)
-        @param database -- the name of the database to connect to (optional)
-        """
-        self.connection = mysql.connect(
-            host=host,
-            user=username,
-            passwd=password,
-            port=port,
-            db=database
-        )
-        self.c = self.connection.cursor()
+    def __init__(self, connection, cursor):
+        self.connection = connection
+        self.cursor = cursor
 
     def __del__(self):
         """
@@ -39,6 +22,32 @@ class DatabaseConnector:
         """
         self.close()
 
+    @classmethod
+    def connect_mysql(cls, host='', username='', password='', port=3306, database=''):
+        """
+        Initializes a MySQL connection with the provided credentials.
+
+        @param host -- the host to connect to (default localhost)
+        @param username -- the username to login as (optional)
+        @param password -- the password to login with (optional)
+        @param port -- the port to connect to (optional)
+        @param database -- the name of the database to connect to (optional)
+        """
+        try:
+            import MySQLdb as mysql
+        except ImportError:
+            raise ImportError("Please install the mysql-python package")
+
+        connection = mysql.connect(
+            host=host,
+            user=username,
+            passwd=password,
+            port=port,
+            db=database
+        )
+        c = connection.cursor()
+        return cls(connection, c)
+
     def query(self, query):
         """
         Returns the result of running the query on the database
@@ -47,8 +56,8 @@ class DatabaseConnector:
 
         @return (Tuple<String>) the result of the query as a tuple of Strings
         """
-        self.c.execute(query)
-        return self.c.fetchall()
+        self.cursor.execute(query)
+        return self.cursor.fetchall()
 
     def execute(self, query):
         """

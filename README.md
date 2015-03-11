@@ -31,22 +31,23 @@ The DatabaseConnector can be used as a regular object or as a context manager.
 ```
 from servconn import DatabaseConnector
 
-db = DatabaseConnector(host, username='test')
+db = DatabaseConnector.connect_mysql(host, username='test')
 db.execute('INSERT INTO table VALUES (1,2)')
 
-with DatabaseConnector(host) as db:
+with DatabaseConnector.connect_mysql(host) as db:
     db.query('SELECT * FROM table')
 ```
 
 ### Class Methods
-- `DatabaseConnector.__init__([host, username, password, port, database])`: Creates a new DatabaseConnector object. Connects to localhost by default, optionally with the given username, password, port, and database.
+- `DatabaseConnector.__init__(connection, cursor)`: Creates a new DatabaseConnector object with the given connection and cursor.
 - `DatabaseConnector.__del__()`: Closes the connection before this object is deleted.
 - `DatabaseConnector.__enter__()`: Allows a DatabaseConnector to be used as a context manager
 - `DatabaseConnector.__exit__()`: Closes the connection on exit as a context manager
+- `DatabaseConnector.connect_mysql([host, username, password, port, database])`: Connects to a MySQL server. Connects to localhost by default, optionally with the given username, password, port, and database.
 
 ### Instance Variables
 - `DatabaseConnector.connection`: The MySQL Connection object
-- `DatabaseConnector.c`: The MySQL Cursor object
+- `DatabaseConnector.cursor`: The MySQL Cursor object
 
 ### Instance Methods
 - `query(query)`: Returns the result of running the given query on the connection

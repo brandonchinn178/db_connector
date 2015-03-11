@@ -5,13 +5,12 @@ with open('DESCRIPTION.rst') as f:
 
 setup(
     name='servconn',
-    version='1.0.0',
+    version='1.0.2',
     author=u'Brandon Chinn',
     author_email='brandonchinn178@gmail.com',
     packages=['servconn'],
     url='http://github.com/brandonchinn178/servconn',
     description='Defines classes that wraps connections to servers',
     long_description=long_des,
-    zip_safe=False,
-    requires=['_mysql']
+    zip_safe=False
 )
