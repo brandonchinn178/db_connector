@@ -2,7 +2,7 @@ ServConn
 ========
 
 This repository defines classes that wrap connections to certain servers. The current classes defined are:
-- DatabaseConnector: a class that wraps a MySQL connection
+- DatabaseConnector: a class that wraps a SQL connection. Currently supports MySQL, SQLite, and PostgreSQL
 - SocketConnector: a class that wraps a socket connection
 
 Development
