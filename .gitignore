@@ -3,3 +3,6 @@ build/
 dist/
 venv/
 *.egg-info
+MANIFEST
+# remnant from gh-pages
+_site/
