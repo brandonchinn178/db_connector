@@ -22,7 +22,7 @@ To install this package, either run `python setup.py install` from this project 
 DatabaseConnector
 -----------------
 
-This class lets you query a connection without dealing with connection or cursor objects. Other database connections may be supported in later versions (PostgreSQL, SQLite, etc)
+This class lets you query a connection without dealing with connection or cursor objects.
 
 ### Usage
 
