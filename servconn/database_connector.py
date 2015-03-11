@@ -64,7 +64,7 @@ class DatabaseConnector:
     @classmethod
     def connect_postgres(cls, host='', username='', password='', port=5432, database=''):
         """
-        Initializes a PostGres connection with the provided credentials.
+        Initializes a PostgreSQL connection with the provided credentials.
 
         @param host -- the host to connect to (default Unix Socket)
         @param username -- the username to login as (optional)

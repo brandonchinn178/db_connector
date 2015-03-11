@@ -22,7 +22,7 @@ To install this package, either run `python setup.py install` from this project 
 DatabaseConnector
 -----------------
 
-This class lets you query a connection without dealing with connection or cursor objects.
+This class lets you query a SQL connection without dealing with connection or cursor objects.
 
 ### Usage
 
@@ -45,7 +45,7 @@ with DatabaseConnector.connect_mysql(host) as db:
 - `DatabaseConnector.__exit__()`: Closes the connection on exit as a context manager
 - `DatabaseConnector.connect_mysql([host, username, password, port, database])`: Connects to a MySQL server. Connects to localhost by default on port 3306, optionally with the given username, password, and database.
 - `DatabaseConnector.connect_sqlite([database])`: Connects to the SQLite database file provided. Defaults to the database in RAM.
-- `DatabaseConnector.connect_postgres([host, username, password, port, database])`: Connects to a PostGres server. Connects to the Unix socket by default on port 5432, optionally with the given username, password, and database.
+- `DatabaseConnector.connect_postgres([host, username, password, port, database])`: Connects to a PostgreSQL server. Connects to the Unix socket by default on port 5432, optionally with the given username, password, and database.
 
 ### Instance Variables
 - `DatabaseConnector.connection`: The MySQL Connection object
