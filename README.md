@@ -39,14 +39,14 @@ with DatabaseConnector(host) as db:
 ```
 
 ### Class Methods
-- `DatabaseConnector.__init__([host, username, password, port, database])`: creates a new DatabaseConnector object. Connects to localhost by default, optionally with the given username, password, port, and database.
-- `DatabaseConnector.__del__()`: closes the connection before this object is deleted.
-- `DatabaseConnector.__enter__()`: allows a DatabaseConnector to be used as a context manager
-- `DatabaseConnector.__exit__()`: closes the connection on exit as a context manager
+- `DatabaseConnector.__init__([host, username, password, port, database])`: Creates a new DatabaseConnector object. Connects to localhost by default, optionally with the given username, password, port, and database.
+- `DatabaseConnector.__del__()`: Closes the connection before this object is deleted.
+- `DatabaseConnector.__enter__()`: Allows a DatabaseConnector to be used as a context manager
+- `DatabaseConnector.__exit__()`: Closes the connection on exit as a context manager
 
 ### Instance Variables
-- `DatabaseConnector.connection`: the MySQL Connection object
-- `DatabaseConnector.c`: the MySQL Cursor object
+- `DatabaseConnector.connection`: The MySQL Connection object
+- `DatabaseConnector.c`: The MySQL Cursor object
 
 ### Instance Methods
 - `query(query)`: Returns the result of running the given query on the connection
@@ -61,7 +61,7 @@ This class lets you send and receive JSON packets to the provided server.
 
 ### Usage
 
-The SocketConnector can be used as a regular object or as a context manager.
+The SocketConnector is used as a regular Python object.
 
 ```
 from servconn import SocketConnector
@@ -71,7 +71,15 @@ data = {
     'hello': 'world'
 }
 response = socket.send(data)
-
-with SocketConnector(host, port) as socket:
-    socket.send(data)
 ```
+
+### Class Methods
+- `SocketConnector.__init__(host, port[, bufsize=4096])`: Creates a new SocketConnector object that will connect to the given host and port. The bufsize may also be specified (see instance variables)
+
+### Instance Variables
+- `SocketConnector.host`: The host to connect to
+- `SocketConnector.port`: The port to connect to
+- `SocketConnector.bufsize`: The size of data allowed to be received through this socket
+
+### Instance Methods
+- `send(data)`: Sends the provided data over the socket as a JSON-formatted string
