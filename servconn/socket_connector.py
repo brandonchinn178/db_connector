@@ -27,3 +27,13 @@ class SocketConnector:
         response = self.socket.recv(self.bufsize)
         self.socket.close()
         return json.loads(response)
+
+    @classmethod
+    def send_to(cls, host, port, data, bufsize=4096):
+        """
+        Initializes a SocketConnector and sends the packet. Deletes the SocketConnector
+        afterwards. Alias for:
+
+        SocketConnector(host, port).send(data)
+        """
+        return cls(host, port, bufsize).send(data)
