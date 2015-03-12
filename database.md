@@ -30,7 +30,7 @@ Class Methods
 
 `DatabaseConnector.connect_mysql([host, username, password, port, database])`
 
-- Connects to a MySQL server, connecting to localhost on port 3306 by default, ptionally with the given username, password, or database.
+- Connects to a MySQL server, connecting to localhost on port 3306 by default, optionally with the given username, password, or database.
 
 `DatabaseConnector.connect_sqlite([database])`
 
