@@ -61,7 +61,7 @@ nav {
             position: relative;
             padding: 0;
             &.active {
-                > a {
+                a {
                     color: #000;
                     background: $background;
                 }
@@ -69,14 +69,13 @@ nav {
                     $border-color: darken($background, 25);
                     border: 1px solid $border-color;
                     li {
-                        padding: 0;
-                        a {
-                            padding-left: 40px;
-                            color: inherit;
-                            background: lighten($border-color, 15);
-                            &:hover {
-                                background: lighten($border-color, 10);
-                            }
+                        padding: 5px;
+                        padding-left: 40px;
+                        color: inherit;
+                        background: lighten($border-color, 15);
+                        cursor: default;
+                        &:hover {
+                            background: lighten($border-color, 10);
                         }
                     }
                 }
