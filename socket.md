@@ -11,7 +11,7 @@ This class lets you send and receive JSON packets to the provided server.
 Usage
 -----
 
-The SocketConnector is used as a regular Python object.
+The SocketConnector is used as a regular Python object. Data can also be sent via the class method `send_to` for one-time connections.
 
     from servconn import SocketConnector
 
@@ -21,6 +21,7 @@ The SocketConnector is used as a regular Python object.
     }
 
     response = socket.send(data)
+    response = SocketConnector.send_to(host, port, data)
 
 Class Methods
 -------------
@@ -28,6 +29,10 @@ Class Methods
 `SocketConnector(host, port[, bufsize=4096])`
 
 - Creates a SocketConnector object that will send packets to the given host and port. The bufsize may also be specified (default 4096).
+
+`SocketConnector.send_to(host, port, data[, bufsize=4096])`
+
+- Creates a SocketConnector object and sends the given data to the given host and port. Useful for one-time connections.
 
 Instance Variables
 ------------------
