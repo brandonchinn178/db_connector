@@ -19,14 +19,18 @@ class SocketConnector:
 
         @param data -- a Python object to send as JSON
 
-        @return (object) the response from the server as a Python object extracted from
-            the JSON formatted string
+        @return (object|String) the response from the server as a Python object extracted from
+            the JSON formatted string. If the response isn't a JSON string, returns the
+            response
         """
         self.socket.connect(self.address)
         self.socket.send(json.dumps(data))
         response = self.socket.recv(self.bufsize)
         self.socket.close()
-        return json.loads(response)
+        try:
+            return json.loads(response)
+        except ValueError:
+            return response
 
     @classmethod
     def send_to(cls, host, port, data, bufsize=4096):
