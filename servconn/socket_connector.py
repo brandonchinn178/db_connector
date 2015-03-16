@@ -22,11 +22,11 @@ class SocketConnector:
             the JSON formatted string. If the response isn't a JSON string, returns the
             response
         """
-        socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        socket.connect(self.address)
-        socket.send(json.dumps(data))
-        response = socket.recv(self.bufsize)
-        socket.close()
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.connect(self.address)
+        sock.send(json.dumps(data))
+        response = sock.recv(self.bufsize)
+        sock.close()
         try:
             return json.loads(response)
         except ValueError:
