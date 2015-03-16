@@ -3,13 +3,12 @@ import socket, json
 class SocketConnector:
     def __init__(self, host, port, bufsize=4096):
         """
-        Initializes a socket connection with the provided server.
+        Initializes a SocketConnector with the provided options
 
         @param host -- the host to connect to
         @param port -- the port to connect to
         @param bufsize -- the size of data allowed to be received (default 4096)
         """
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.address = (host, port)
         self.bufsize = bufsize
 
@@ -23,10 +22,11 @@ class SocketConnector:
             the JSON formatted string. If the response isn't a JSON string, returns the
             response
         """
-        self.socket.connect(self.address)
-        self.socket.send(json.dumps(data))
-        response = self.socket.recv(self.bufsize)
-        self.socket.close()
+        socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        socket.connect(self.address)
+        socket.send(json.dumps(data))
+        response = socket.recv(self.bufsize)
+        socket.close()
         try:
             return json.loads(response)
         except ValueError:
