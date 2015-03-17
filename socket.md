@@ -26,11 +26,11 @@ The SocketConnector is used as a regular Python object. Data can also be sent vi
 Class Methods
 -------------
 
-`SocketConnector(host, port[, bufsize=4096])`
+`SocketConnector(host, port[, bufsize=4096, ca_certs=None, delimiter='$'])`
 
-- Creates a SocketConnector object that will send packets to the given host and port. The bufsize may also be specified (default 4096).
+- Creates a new SocketConnector object that will connect to the given host and port. Various options may also be specified (see instance variables)
 
-`SocketConnector.send_to(host, port, data[, bufsize=4096])`
+`SocketConnector.send_to(host, port, data, **kwargs)`
 
 - Creates a SocketConnector object and sends the given data to the given host and port. Useful for one-time connections.
 
@@ -39,19 +39,31 @@ Instance Variables
 
 `SocketConnector.host`
 
-- The host of the address to send packets to.
+- The host to connect to
 
 `SocketConnector.port`
 
-- The port of the address to send packets to.
+- The port to connect to
 
 `SocketConnector.bufsize`
 
-- The maximum amount of data allowed to be received at once through this socket.
+- The maximum amount of data allowed to be received at once through this socket (by default 4096)
+
+`SocketConnector.ca_certs`
+
+- The file path to an SSL certificate. Set to enable encrypted connections (by default None)
+
+`SocketConnector.delimiter`
+
+- The delimiter used for the `sendall` function. Messages will continue to be received until this delimiter is reached in the message string (by default '$')
 
 Instance Methods
 ----------------
 
 `send(data)`
 
-- Sends the provided data over the socket as a JSON-formatted string
+- Sends the provided data over the socket as a JSON-formatted string. Returns the response up to the bufsize.
+
+`sendall(data)`
+
+- Sends the provided data over the socket as a JSON-formatted string. Receives data until the delimiter is reached, then returns the response.
