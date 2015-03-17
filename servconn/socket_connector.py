@@ -56,7 +56,7 @@ class SocketConnector:
         sock = self._send_data(data)
         response = sock.recv(self.bufsize)
         sock.close()
-        return _return_response(response)
+        return self._return_response(response)
 
     def sendall(self, data):
         """
@@ -76,7 +76,7 @@ class SocketConnector:
             response += sock.recv(self.bufsize)
 
         sock.close()
-        return _return_response(response[:-1])
+        return self._return_response(response[:-1])
 
     @classmethod
     def send_to(cls, host, port, data, **kwargs):
