@@ -79,11 +79,11 @@ class SocketConnector:
         return _return_response(response[:-1])
 
     @classmethod
-    def send_to(cls, host, port, data, bufsize=4096):
+    def send_to(cls, host, port, data, **kwargs):
         """
         Initializes a SocketConnector and sends the packet. Deletes the SocketConnector
         afterwards. Alias for:
 
-        SocketConnector(host, port).send(data)
+        SocketConnector(host, port, **kwargs).send(data)
         """
-        return cls(host, port, bufsize).send(data)
+        return cls(host, port, **kwargs).send(data)
