@@ -1,16 +1,18 @@
-import socket, json
+import socket, json, ssl
 
 class SocketConnector:
-    def __init__(self, host, port, bufsize=4096):
+    def __init__(self, host, port, bufsize=4096, ca_certs=None):
         """
         Initializes a SocketConnector with the provided options
 
         @param host -- the host to connect to
         @param port -- the port to connect to
         @param bufsize -- the size of data allowed to be received (default 4096)
+        @param ca_certs -- the certificate file to optionally encrypt the connection
         """
         self.address = (host, port)
         self.bufsize = bufsize
+        self.ca_certs = ca_certs
 
     def send(self, data):
         """
@@ -23,6 +25,9 @@ class SocketConnector:
             response
         """
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        if self.ca_certs:
+            sock = ssl.wrap_socket(sock, cert_reqs=ssl.CERT_REQUIRED, ca_certs=self.ca_certs)
+
         sock.connect(self.address)
         sock.send(json.dumps(data))
         response = sock.recv(self.bufsize)
