@@ -28,17 +28,21 @@ Class Methods
 
 - Creates a DatabaseConnector object with the given connection and cursor.
 
-`DatabaseConnector.connect_mysql([host, username, password, port, database])`
+`DatabaseConnector.connect_mysql([host, username, password, port, database, **kwargs])`
 
-- Connects to a MySQL server, connecting to localhost on port 3306 by default, optionally with the given username, password, or database.
+- Connects to a MySQL server. Connects to localhost by default on port 3306, optionally with the given username, password, and database. Additional parameters will be passed into the connect function
 
-`DatabaseConnector.connect_sqlite([database])`
+`DatabaseConnector.connect_sqlite([database, **kwargs])`
 
-- Connects to the SQLite database file provided. Defaults to the database in RAM.
+- Connects to the SQLite database file provided. Defaults to the database in RAM. Additional parameters will be passed into the connect function
 
-`DatabaseConnector.connect_postgres([host, username, password, port, database])`
+`DatabaseConnector.connect_postgres([host, username, password, port, database, **kwargs])`
 
-- Connects to a PostgreSQL server. Connects to the Unix socket by default on port 5432, optionally with the given username, password, and database.
+- Connects to a PostgreSQL server. Connects to the Unix socket by default on port 5432, optionally with the given username, password, and database. Additional parameters will be passed into the connect function
+
+`DatabaseConnector.connect_mssql([host, username, password, port, database, **kwargs])`
+
+- Connects to a Microsoft SQL server. Connects to localhost by default on port 1433, optionally with the given username, password, and database. Additional parameters will be passed into the connect function
 
 Instance Variables
 ------------------
