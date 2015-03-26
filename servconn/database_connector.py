@@ -100,12 +100,13 @@ class DatabaseConnector:
 
     def execute(self, query):
         """
-        Runs a query on the database, but doesn't return the result of the query. Does the
-        same thing as query otherwise. Useful for SQL executions such as INSERT or DROP.
+        Runs a query on the database and commits the transaction. Useful for SQL
+        executions such as INSERT or DROP.
 
         @param query -- the query to execute on the connection.
         """
         self.query(query)
+        self.connection.commit()
 
     def compute(self, query):
         """
@@ -115,7 +116,8 @@ class DatabaseConnector:
         @param query -- the query to pass to the connection
 
         @return (Tuple<String>) the the first row of the query as a tuple of Strings. Although
-        most results will be numerical, 
+        most results will be numerical, cannot predict this ahead of time and the values must
+        be cast into numerical data types to use as numbers.
         """
         rows = self.query(query)
         return rows[0]

@@ -53,7 +53,7 @@ with DatabaseConnector.connect_mysql(host) as db:
 
 ### Instance Methods
 - `query(query)`: Returns the result of running the given query on the connection
-- `execute(query)`: Executes the query but doesn't return anything. Useful for INSERT or DROP operations
+- `execute(query)`: Executes the query and commits the transaction, but doesn't return anything. Useful for INSERT or DROP operations
 - `compute(query)`: Returns the first row of the result of the running the query. Useful for SQL aggregate functions
 - `close()`: Closes the connection from any further queries
 
