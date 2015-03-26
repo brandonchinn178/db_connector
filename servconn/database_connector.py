@@ -23,7 +23,7 @@ class DatabaseConnector:
         self.close()
 
     @classmethod
-    def connect_mysql(cls, host='', username='', password='', port=3306, database=''):
+    def connect_mysql(cls, host='', username='', password='', port=3306, database='', **kwargs):
         """
         Initializes a MySQL connection with the provided credentials.
 
@@ -43,13 +43,14 @@ class DatabaseConnector:
             user=username,
             passwd=password,
             port=port,
-            db=database
+            db=database,
+            **kwargs
         )
         c = connection.cursor()
         return cls(connection, c)
 
     @classmethod
-    def connect_sqlite(cls, database=':memory:'):
+    def connect_sqlite(cls, database=':memory:', **kwargs):
         """
         Initializes a SQLite connection to the given database.
 
@@ -57,12 +58,12 @@ class DatabaseConnector:
         """
         import sqlite3
 
-        connection = sqlite3.connect(database=database)
+        connection = sqlite3.connect(database=database, **kwargs)
         c = connection.cursor()
         return cls(connection, c)
 
     @classmethod
-    def connect_postgres(cls, host='', username='', password='', port=5432, database=''):
+    def connect_postgres(cls, host='', username='', password='', port=5432, database='', **kwargs):
         """
         Initializes a PostgreSQL connection with the provided credentials.
 
@@ -82,13 +83,14 @@ class DatabaseConnector:
             user=username,
             password=password,
             port=port,
-            database=database
+            database=database,
+            **kwargs
         )
         c = connection.cursor()
         return cls(connection, c)
 
     @classmethod
-    def connect_mssql(cls, host='.', username='', password='', port=1433, database=''):
+    def connect_mssql(cls, host='.', username='', password='', port=1433, database='', **kwargs):
         """
         Initializes a Microsoft SQL connection with the provided credentials.
 
@@ -108,7 +110,8 @@ class DatabaseConnector:
             user=username,
             password=password,
             port=str(port),
-            database=database
+            database=database,
+            **kwargs
         )
         c = connection.cursor()
         return cls(connection, c)
