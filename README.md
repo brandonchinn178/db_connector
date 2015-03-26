@@ -11,8 +11,9 @@ Development
 To develop, use the following to setup your environment
 
 1. (optional) Setup a virtual environment with virtualenv
-2. Install pip
-3. `pip install -r requirements.txt`
+2. Install pip, brew
+3. `brew install freetds` - the pymssql package needs this installation
+4. `pip install -r requirements.txt` - installs all of the python SQL packages
 
 Installing
 ----------
@@ -46,6 +47,7 @@ with DatabaseConnector.connect_mysql(host) as db:
 - `DatabaseConnector.connect_mysql([host, username, password, port, database])`: Connects to a MySQL server. Connects to localhost by default on port 3306, optionally with the given username, password, and database.
 - `DatabaseConnector.connect_sqlite([database])`: Connects to the SQLite database file provided. Defaults to the database in RAM.
 - `DatabaseConnector.connect_postgres([host, username, password, port, database])`: Connects to a PostgreSQL server. Connects to the Unix socket by default on port 5432, optionally with the given username, password, and database.
+- `DatabaseConnector.connect_mssql([host, username, password, port, database])`: Connects to a Microsoft SQL server. Connects to localhost by default on port 1433, optionally with the given username, password, and database.
 
 ### Instance Variables
 - `DatabaseConnector.connection`: The MySQL Connection object

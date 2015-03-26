@@ -87,6 +87,32 @@ class DatabaseConnector:
         c = connection.cursor()
         return cls(connection, c)
 
+    @classmethod
+    def connect_mssql(cls, host='.', username='', password='', port=1433, database=''):
+        """
+        Initializes a Microsoft SQL connection with the provided credentials.
+
+        @param host -- the host to connect to (default localhost)
+        @param username -- the username to login as (optional)
+        @param password -- the password to login with (optional)
+        @param port -- the port to connect to (default 1433)
+        @param database -- the name of the database to connect to (optional)
+        """
+        try:
+            import pymssql
+        except ImportError:
+            raise ImportError("Please install the pymssql package")
+
+        connection = pymssql.connect(
+            server=host,
+            user=username,
+            password=password,
+            port=str(port),
+            database=database
+        )
+        c = connection.cursor()
+        return cls(connection, c)
+
     def query(self, query):
         """
         Returns the result of running the query on the database
