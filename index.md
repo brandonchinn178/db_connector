@@ -6,8 +6,9 @@ ServConn
 ========
 
 This package defines classes that wrap connections to certain servers. The current classes defined are:
-- DatabaseConnector: a class that wraps a MySQL connection
-- SocketConnector: a class that wraps a socket connection
+
+- **DatabaseConnector**: a class that wraps a MySQL connection
+- **SocketConnector**: a class that wraps a socket connection
 
 Installation
 ------------
