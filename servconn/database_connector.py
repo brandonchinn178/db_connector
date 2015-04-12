@@ -155,4 +155,7 @@ class DatabaseConnector:
         """
         Closes the connection, preventing any further queries
         """
+        self.cursor.close()
         self.connection.close()
+        self.connection = None
+        self.cursor = None
