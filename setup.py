@@ -5,7 +5,7 @@ with open('DESCRIPTION.rst') as f:
 
 setup(
     name='servconn',
-    version='1.3.2',
+    version='1.3.3',
     author=u'Brandon Chinn',
     author_email='brandonchinn178@gmail.com',
     packages=['servconn'],

@@ -144,7 +144,7 @@ class DatabaseConnector:
 
         @return (Tuple<String>) the result of the query as a tuple of Strings
         """
-        return map(lambda row: row[0], self.query(query))
+        return tuple(map(lambda row: row[0], self.query(query)))
 
     def execute(self, query):
         """
@@ -168,7 +168,11 @@ class DatabaseConnector:
         be cast into numerical data types to use as numbers.
         """
         rows = self.query(query)
-        return rows[0]
+        try:
+            return rows[0]
+        except:
+            # empty row
+            return tuple()
 
     def close(self):
         """
