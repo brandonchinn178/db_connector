@@ -122,10 +122,29 @@ class DatabaseConnector:
 
         @param query -- the query to pass to the connection
 
-        @return (Tuple<String>) the result of the query as a tuple of Strings
+        @return (Tuple<Tuple>) the result of the query as a tuple of tuples in the form:
+            [ROW, ROW, ROW], where ROW = (column, column, column)
         """
         self.cursor.execute(query)
         return self.cursor.fetchall()
+
+    def query_column(self, query):
+        """
+        Returns the result of running the query on the database, but only returns
+        the first column of every row. Useful for SELECT queries selecting only
+        one column, i.e. SELECT column FROM table. Instead of getting
+
+            ((val,), (val,), (val,))
+
+        from query(), query_column() returns
+
+            (val, val, val)
+
+        @param query -- the query to pass to the connection
+
+        @return (Tuple<String>) the result of the query as a tuple of Strings
+        """
+        return map(lambda row: row[0], self.query(query))
 
     def execute(self, query):
         """

@@ -55,6 +55,7 @@ with DatabaseConnector.connect_mysql(host) as db:
 
 ### Instance Methods
 - `query(query)`: Returns the result of running the given query on the connection
+- `query_column(query)`: Returns the result of running the given query on the connection. Only returns the first column for every row, returning a tuple of Strings instead of a tuple of tuples.
 - `execute(query)`: Executes the query and commits the transaction, but doesn't return anything. Useful for INSERT or DROP operations
 - `compute(query)`: Returns the first row of the result of the running the query. Useful for SQL aggregate functions
 - `close()`: Closes the connection from any further queries
