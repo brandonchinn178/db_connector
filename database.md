@@ -62,6 +62,10 @@ Instance Methods
 
 - Returns the result of running the given query on the connection.
 
+`query_column(query)`
+
+- Returns the result of running the given query on the connection, but only returns the first column for every row. Useful for SELECT operations on only one column.
+
 `execute(query)`
 
 - Executes the query but doesn't return anything. Useful for INSERT or DROP operations.
